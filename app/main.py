@@ -1,9 +1,13 @@
 from fastapi import FastAPI
+from fastapi.responses import RedirectResponse
 from app.features import load_logs_as_dataframe, build_features
 from app.detector import train_model, load_model, score_features
 
 app = FastAPI(title="Security Log Anomaly Detector")
 
+@app.get("/")
+def root():
+    return RedirectResponse(url="/docs")
 
 @app.post("/train")
 def train():
