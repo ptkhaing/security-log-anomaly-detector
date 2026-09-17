@@ -4,7 +4,7 @@ A backend service that ingests authentication logs and flags suspicious activity
 
 **Live demo:** https://security-log-anomaly-detector-5apx.onrender.com/docs
 
-<img width="729" height="357" alt="Screenshot 2026-09-17 at 5 33 00 PM" src="https://github.com/user-attachments/assets/c3e7147b-edf7-450a-974d-725c0b3c2900" />
+<img width="1478" height="226" alt="Screenshot 2026-09-17 at 5 34 51 PM" src="https://github.com/user-attachments/assets/05d3df8e-1934-4913-9ccd-835a326bcbfc" />
 
 ## Why unsupervised ML
 
