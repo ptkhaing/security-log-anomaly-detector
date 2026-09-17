@@ -2,6 +2,10 @@
 
 A backend service that ingests authentication logs and flags suspicious activity (brute-force attempts, unusual login times) using unsupervised machine learning — not rule-based thresholds.
 
+**Live demo:** https://security-log-anomaly-detector-5apx.onrender.com/docs
+
+<img width="729" height="357" alt="Screenshot 2026-09-17 at 5 33 00 PM" src="https://github.com/user-attachments/assets/c3e7147b-edf7-450a-974d-725c0b3c2900" />
+
 ## Why unsupervised ML
 
 Labeled "attack" data is rarely available in real security contexts. This project uses an **Isolation Forest** (scikit-learn), an unsupervised anomaly detection algorithm, so the system can flag *unusual* behavior without ever being told in advance what an attack looks like.
@@ -13,11 +17,17 @@ Labeled "attack" data is rarely available in real security contexts. This projec
 3. An Isolation Forest is trained on these feature vectors and flags the most statistically unusual windows as anomalies.
 4. Results are served via a FastAPI REST API.
 
+## Deployment
+
+Deployed on Render (Docker-based web service) with Supabase as the managed Postgres provider. The database URL is injected via environment variable; `app/database.py` includes a small compatibility fix for Supabase/Render's `postgres://` URL prefix, which SQLAlchemy 2.x requires as `postgresql://`.
+
 ## Tech stack
 
 - Python, FastAPI, Uvicorn
-- PostgreSQL, SQLAlchemy
+- PostgreSQL (Supabase, production) / PostgreSQL (local, development)
+- SQLAlchemy
 - scikit-learn (Isolation Forest), pandas
+- Docker, deployed on Render
 
 ## API
 
@@ -29,7 +39,7 @@ Labeled "attack" data is rarely available in real security contexts. This projec
 - `contamination=0.05` is a manually chosen hyperparameter; it can produce false positives on small or unbalanced datasets (observed: a couple of single-event windows flagged due to limited baseline data).
 - Currently trained on synthetic seed data; a production version would need real log volume for reliable thresholds.
 
-## Setup
+## Setup (local development)
 
 \`\`\`bash
 python3 -m venv venv
@@ -39,3 +49,5 @@ python create_tables.py
 python seed_data.py
 uvicorn app.main:app --reload
 \`\`\`
+
+Requires a local PostgreSQL instance and a `.env` file with `DATABASE_URL` pointing to it.
