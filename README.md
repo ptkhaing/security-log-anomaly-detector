@@ -4,8 +4,6 @@ A backend service that ingests authentication logs and flags suspicious activity
 
 **Live demo:** https://security-log-anomaly-detector-5apx.onrender.com/docs
 
-<img width="1478" height="226" alt="Screenshot 2026-09-17 at 5 34 51 PM" src="https://github.com/user-attachments/assets/05d3df8e-1934-4913-9ccd-835a326bcbfc" />
-
 ## Why unsupervised ML
 
 Labeled "attack" data is rarely available in real security contexts. This project uses an **Isolation Forest** (scikit-learn), an unsupervised anomaly detection algorithm, so the system can flag *unusual* behavior without ever being told in advance what an attack looks like.
