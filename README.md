@@ -2,7 +2,7 @@
 
 A backend service that ingests authentication logs and flags suspicious activity (brute-force attempts, unusual login times) using unsupervised machine learning — not rule-based thresholds.
 
-**Live demo:** https://security-log-anomaly-detector-5apx.onrender.com/docs
+**[Live Demo](https://security-log-anomaly-detector-5apx.onrender.com/docs)**
 
 ## Why unsupervised ML
 
