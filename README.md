@@ -49,3 +49,5 @@ uvicorn app.main:app --reload
 \`\`\`
 
 Requires a local PostgreSQL instance and a `.env` file with `DATABASE_URL` pointing to it.
+
+## License MIT — see [LICENSE](LICENSE) for details.
