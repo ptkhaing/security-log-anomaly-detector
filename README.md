@@ -32,6 +32,42 @@ Deployed on Render (Docker-based web service) with Supabase as the managed Postg
 - `POST /train` — retrains the model on current log data
 - `GET /anomalies` — returns flagged anomalous time-windows
 
+Example: training the model
+```bash curl -X POST https://security-log-anomaly-detector-5apx.onrender.com/train```
+```
+json
+{
+  "status": "trained",
+  "windows_used": 277
+}
+```
+
+Example: fetching anomalies
+```bash curl https://security-log-anomaly-detector-5apx.onrender.com/anomalies```
+```
+json
+[
+  {
+    "source_ip": "203.0.113.99",
+    "timestamp": "2026-09-15T07:00:00",
+    "attempt_count": 23,
+    "failure_rate": 1,
+    "distinct_usernames": 5,
+    "off_hours_fraction": 1,
+    "anomaly_score": -0.2888
+  },
+  {
+    "source_ip": "203.0.113.99",
+    "timestamp": "2026-09-15T07:10:00",
+    "attempt_count": 17,
+    "failure_rate": 1,
+    "distinct_usernames": 5,
+    "off_hours_fraction": 1,
+    "anomaly_score": -0.2805
+  }
+]
+```
+
 ## Known limitations
 
 - `contamination=0.05` is a manually chosen hyperparameter; it can produce false positives on small or unbalanced datasets (observed: a couple of single-event windows flagged due to limited baseline data).
